@@ -21,7 +21,7 @@ end
 
 function PhysicsMessages(msg)
 
-    print('AAAAAAAAAAAAAAAAAAAAAAA')--tostring(msg.to)..tostring(mgs.from))
+    --tostring(msg.to)..tostring(mgs.from))
 
     return true
 
