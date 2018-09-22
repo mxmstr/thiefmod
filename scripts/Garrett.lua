@@ -30,7 +30,7 @@ end
 
 function DHNotify(msg)
 
-    --print()
+    print(tostring(property.Get(msg.to, 'Position')))
 
     return true
 
