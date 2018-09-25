@@ -5,17 +5,15 @@ local hook = lgs.DarkHookSrv
 local round = math.round
 local square = math.sqrt
 
+local speed_max = 0.19
+local light_max = 12
+local light_decay_time_max = 100
+local light_decay_time = light_decay_time_max
 local last_pos = nil
 
 
 
 local GetDistance = function(a, b)
-
-    local num1 = round(a.x, 0)
-    local num2 = round(b.x, 0)
-    --num1 = num1 + round(a.x)
-    ui.TextMessage(a.x - b.x)
-    --ui.TextMessage( tostring( + b.x) )
 
     local x, y, z = a.x - b.x, a.y - b.y, a.z - b.z
     return square(x * x + y * y + z * z)
@@ -25,8 +23,8 @@ end
 
 function BeginScript(msg)
 
-    --hook.DarkHookInitialize()
-    print(hook.InstallPropHook(msg.to, true, 'Position', msg.to))
+    hook.DarkHookInitialize()
+    hook.InstallPropHook(msg.to, true, 'Position', msg.to)
 
 
     property.Add(msg.to, 'SelfLit')
@@ -37,28 +35,29 @@ function BeginScript(msg)
 end
 
 
-function PhysicsMessages(msg)
-
-    --tostring(msg.to)..tostring(mgs.from))
-
-    return true
-
-end
-
-
 function DHNotify(msg)
 
-    local new_pos = property.Get(msg.to, 'Position')
+    local new_pos = property.Get(msg.to, 'Position', 'Location')
 
-    
-    print('asdf')
+    if last_pos ~= nil and last_pos ~= new_pos then
 
-    if last_pos ~= nil then
-        print(tostring(new_pos))
-        print(tostring(last_pos))
-        --local dist = GetDistance(new_pos, last_pos)
-        --ui.TextMessage(tostring(dist))
+        light_decay_time = 0
+
+        local dist = GetDistance(new_pos, last_pos)
+        local light = (dist / speed_max) * light_max
+
+        property.Set(msg.to, 'SelfLit', round(light))
+
+    else
+
+        if light_decay_time > light_decay_time_max then
+            property.Set(msg.to, 'SelfLit', 0)
+        else
+            light_decay_time = light_decay_time + 1
+        end
+
     end
+
 
     last_pos = new_pos
 
