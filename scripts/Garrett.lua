@@ -5,13 +5,17 @@ local hook = lgs.DarkHookSrv
 local round = math.round
 local square = math.sqrt
 
-local speed_max = 0.19
 local light_max = 12
 local light_decay_time_max = 100
 local light_decay_time = light_decay_time_max
 local last_pos = nil
 
 
+local InStandZone = function()
+
+
+
+end
 
 local GetDistance = function(a, b)
 
@@ -19,6 +23,38 @@ local GetDistance = function(a, b)
     return square(x * x + y * y + z * z)
 
 end
+
+local GetSpeed = function()
+
+    local dist = 0
+    local new_pos = property.Get(msg.to, 'Position', 'Location')
+
+    if last_pos ~= nil and last_pos ~= new_pos then
+        dist = GetDistance(new_pos, last_pos)
+    else
+        dist = 0
+    end
+
+    last_pos = new_pos
+
+end
+
+local actions = {
+    { 
+        priority = 0,
+        trigger = InStandZone,
+        source = GetSpeed, 
+        target_value = 0.19,
+        light_multiplier = 12 
+    },
+    { 
+        priority = 1,
+        trigger = InWalkZone,
+        source = GetSpeed, 
+        target_value = 0.08,
+        light_multiplier = 12 
+    }
+}
 
 
 function BeginScript(msg)
