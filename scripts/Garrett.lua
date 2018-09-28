@@ -6,6 +6,8 @@ local link = lgs.LinkSrv
 local hook = lgs.DarkHookSrv
 local abs = math.abs
 
+local rooms = {}
+
 
 function BeginScript(msg)
 
@@ -15,6 +17,15 @@ function BeginScript(msg)
 
     property.Add(msg.to, 'SelfLit')
     property.Set(msg.to, 'SelfLit', 0)
+
+    return true
+
+end
+
+
+function SetRoomRules(msg)
+
+    
 
     return true
 

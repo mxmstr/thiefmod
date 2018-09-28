@@ -1,12 +1,7 @@
-local ui = lgs.DarkUISrv
-local property = lgs.PropertySrv
-local link = lgs.LinkSrv
-local hook = lgs.DarkHookSrv
+local network = lgs.NetworkingSrv
 
 
 function BeginScript(msg)
-
-    print('Start')
     
     return true
 
@@ -15,16 +10,12 @@ end
 
 function CreatureRoomEnter(msg)
 
-    print('AI Enter')
-
     return true
 
 end
 
 
 function ObjectRoomEnter(msg)
-
-    print('Object Enter')
 
     return true
 
@@ -34,6 +25,16 @@ end
 function PlayerRoomEnter(msg)
 
     print('Player Enter')
+    print(network.Broadcast(msg.MoveObjId, 'SetRoomRules', false, msg))
+
+    return true
+
+end
+
+
+function PlayerRoomExit(msg)
+
+    print('Player Exit')
 
     return true
 
