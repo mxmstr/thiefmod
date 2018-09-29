@@ -1,8 +1,11 @@
 local network = lgs.NetworkingSrv
+local damage = lgs.DamageSrv
 
 
 function BeginScript(msg)
     
+    --prop = 1
+    --print(prop)
     return true
 
 end
@@ -25,7 +28,7 @@ end
 function PlayerRoomEnter(msg)
 
     print('Player Enter')
-    print(network.Broadcast(msg.MoveObjId, 'SetRoomRules', false, msg))
+    script:PostMessage(msg.MoveObjId, 'SetRoomRule', msg.ToObjId, msg.FromObjId)
 
     return true
 

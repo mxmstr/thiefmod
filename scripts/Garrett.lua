@@ -6,8 +6,6 @@ local link = lgs.LinkSrv
 local hook = lgs.DarkHookSrv
 local abs = math.abs
 
-local rooms = {}
-
 
 function BeginScript(msg)
 
@@ -23,9 +21,10 @@ function BeginScript(msg)
 end
 
 
-function SetRoomRules(msg)
+function SetRoomRule(msg)
 
-    
+    print("Message "..msg.to.." received from "..msg.from)
+    print(msg.data[1]..' '..msg.data[2])
 
     return true
 
