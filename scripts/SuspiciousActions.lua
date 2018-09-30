@@ -1,28 +1,31 @@
+require 'Constants'
+
+local ui = lgs.DarkUISrv
 local property = lgs.PropertySrv
 local square = math.sqrt
 
-light_max = 12
+local light_max = 12
 
 -- Triggers
 
-InStandZone = function(id)
+InStandZone = function(script)
 
-    return true
+    return script.room_rule == StandOnly
 
 end
 
-InWalkZone = function(id)
+InWalkZone = function(script)
 
-    return false
+    return script.room_rule == WalkOnly
 
 end
 
 -- Sources
 
-dist = 0
-light_decay_time_max = 100
-light_decay_time = light_decay_time_max
-last_pos = nil
+local dist = 0
+local light_decay_time_max = 100
+local light_decay_time = light_decay_time_max
+local last_pos = nil
 
 GetDistance = function(a, b)
 
@@ -60,15 +63,15 @@ actions = {
         trigger = InStandZone,
         value_source = GetSpeed, 
         value_target = 0,
-        value_max = 0.19,
+        value_max = 0.067,
         light_multiplier = 12 
     },
     { 
-        priority = 1,
+        priority = 0,
         trigger = InWalkZone,
         value_source = GetSpeed, 
-        value_target = 0.08,
-        value_max = 0.19,
+        value_target = 0.028,
+        value_max = 0.067,
         light_multiplier = 12 
     }
 }
