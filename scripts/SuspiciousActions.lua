@@ -22,9 +22,6 @@ end
 
 -- Sources
 
-local dist = 0
-local light_decay_time_max = 100
-local light_decay_time = light_decay_time_max
 local last_pos = nil
 
 GetDistance = function(a, b)
@@ -34,19 +31,13 @@ GetDistance = function(a, b)
 
 end
 
-GetSpeed = function(id)
+GetSpeed = function(script)
 
-    local new_pos = property.Get(id, 'Position', 'Location')
+    local dist = 0
+    local new_pos = property.Get(script.ObjId, 'Position', 'Location')
 
-    if last_pos ~= nil and last_pos ~= new_pos then
-        light_decay_time = 0
+    if last_pos ~= nil then
         dist = GetDistance(new_pos, last_pos)
-    else
-        if light_decay_time < light_decay_time_max then
-            light_decay_time = light_decay_time + 1
-        else
-            dist = 0
-        end
     end
 
     last_pos = new_pos
@@ -63,15 +54,15 @@ actions = {
         trigger = InStandZone,
         value_source = GetSpeed, 
         value_target = 0,
-        value_max = 0.067,
+        value_max = 0.2,
         light_multiplier = 12 
     },
     { 
         priority = 0,
         trigger = InWalkZone,
         value_source = GetSpeed, 
-        value_target = 0.028,
-        value_max = 0.067,
+        value_target = 0.085,
+        value_max = 0.2,
         light_multiplier = 12 
     }
 }

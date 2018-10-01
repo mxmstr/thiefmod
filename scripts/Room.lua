@@ -4,8 +4,6 @@ local damage = lgs.DamageSrv
 
 function BeginScript(msg)
     
-    --prop = 1
-    --print(prop)
     return true
 
 end
@@ -27,7 +25,7 @@ end
 
 function PlayerRoomEnter(msg)
 
-    print('Player Enter')
+    --print('Player Enter')
     script:PostMessage(msg.MoveObjId, 'SetRoomRule', msg.ToObjId, msg.FromObjId)
 
     return true
@@ -37,7 +35,7 @@ end
 
 function PlayerRoomExit(msg)
 
-    print('Player Exit')
+    --print('Player Exit')
 
     return true
 

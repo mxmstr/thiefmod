@@ -12,8 +12,10 @@ function BeginScript(msg)
 
     script.room_rule = StandOnly
 
-    hook.DarkHookInitialize()
-    hook.InstallPropHook(msg.to, true, 'Position', msg.to)
+    script:SetTimedMessage('name', 16, 'Periodic', 'Update')
+
+    --hook.DarkHookInitialize()
+    --hook.InstallPropHook(msg.to, true, 'Position', msg.to)
 
 
     property.Add(msg.to, 'SelfLit')
@@ -34,8 +36,17 @@ function SetRoomRule(msg)
 end
 
 
-function DHNotify(msg)
-    
+function Timer(msg)
+
+    if msg.data[1] == 'Update' then
+        Update()
+    end
+
+end
+
+
+function Update()
+
     local min_priority = 0
     local min_value = 0
 
@@ -47,13 +58,13 @@ function DHNotify(msg)
         
         if trigger(script) and priority >= min_priority then
 
-            local value = action['value_source'](msg.to)
+            local value = action['value_source'](script)
             value = abs(value - action['value_target'])
             value = value / action['value_max']
             value = value * mult
 
             if value >= min_value then
-                property.Set(msg.to, 'SelfLit', value)
+                property.Set(script.ObjId, 'SelfLit', value)
                 min_priority = priority
                 min_value = value
             end
