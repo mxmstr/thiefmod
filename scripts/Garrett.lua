@@ -73,6 +73,4 @@ function Update()
         
     end
 
-    return true
-
 end
