@@ -1,9 +1,5 @@
 require 'Constants'
 
-local ui = lgs.DarkUISrv
-local property = lgs.PropertySrv
-local square = math.sqrt
-
 local light_max = 12
 
 -- Triggers

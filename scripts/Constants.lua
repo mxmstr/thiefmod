@@ -11,5 +11,14 @@
     - Custom sound schemas
 ]]
 
+ui = lgs.DarkUISrv
+phys = lgs.PhysSrv
+object = lgs.ObjectSrv
+property = lgs.PropertySrv
+link = lgs.LinkSrv
+hook = lgs.DarkHookSrv
+abs = math.abs
+square = math.sqrt
+
 StandOnly = 0
 WalkOnly = 1

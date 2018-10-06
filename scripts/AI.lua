@@ -1,6 +1,4 @@
-
-local ui = lgs.DarkUISrv
-local property = lgs.PropertySrv
+require 'Constants'
 
 
 function BeginScript(msg)

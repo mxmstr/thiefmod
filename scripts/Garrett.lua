@@ -1,22 +1,14 @@
 require 'Constants'
 require 'SuspiciousActions'
 
-local ui = lgs.DarkUISrv
-local property = lgs.PropertySrv
-local link = lgs.LinkSrv
-local hook = lgs.DarkHookSrv
-local abs = math.abs
-
 
 function BeginScript(msg)
 
     script.room_rule = StandOnly
 
     script:SetTimedMessage('name', 16, 'Periodic', 'Update')
-
-    --hook.DarkHookInitialize()
-    --hook.InstallPropHook(msg.to, true, 'Position', msg.to)
-
+    --script:SetTimedMessage('name', 500, 'Periodic', 'Fire')
+    
 
     property.Add(msg.to, 'SelfLit')
     property.Set(msg.to, 'SelfLit', 0)
@@ -38,9 +30,21 @@ end
 
 function Timer(msg)
 
-    if msg.data[1] == 'Update' then
-        Update()
-    end
+    local callbacks = {
+        ['Update'] = Update,
+        ['Fire'] = Fire
+    }
+
+    callbacks[msg.data[1]]()
+
+    return true
+
+end
+
+
+function Fire()
+
+    phys.LaunchProjectile(script.ObjId, -6830)
 
 end
 
