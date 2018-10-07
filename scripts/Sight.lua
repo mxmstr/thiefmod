@@ -4,7 +4,6 @@ require 'Constants'
 function BeginScript(msg)
 
     phys.SubscribeMsg(msg.to, 'collision')
-
     script:SetTimedMessage('name', 100, 'Periodic', 'End')
 
     return true
@@ -28,7 +27,7 @@ end
 
 function End()
 
-    --object.Destroy(script.ObjId)
+    object.Destroy(script.ObjId)
 
 end
 
@@ -36,6 +35,8 @@ end
 function PhysCollision(msg)
 
     --ui.TextMessage(msg.collObj)
+    --ai.SetMinimumAlert(msg.collObj, 2)
+    
     return true
 
 end

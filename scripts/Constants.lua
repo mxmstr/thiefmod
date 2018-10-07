@@ -12,6 +12,7 @@
 ]]
 
 ui = lgs.DarkUISrv
+ai = lgs.AISrv
 phys = lgs.PhysSrv
 object = lgs.ObjectSrv
 property = lgs.PropertySrv

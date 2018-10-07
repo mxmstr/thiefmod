@@ -3,7 +3,7 @@ require 'Constants'
 
 function BeginScript(msg)
 
-    ui.TextMessage(tostring(property.Remove(msg.to, 'M-AlertCapZero')))
+    object.AddMetaProperty(msg.to, -3531)
 
     script:SetTimedMessage('name', 16, 'Periodic', 'Update')
 
@@ -12,19 +12,15 @@ function BeginScript(msg)
 end
 
 
-function Custom(msg)
-
-    --ui.TextMessage('asdf')
-    return true
-
-end
-
-
 function Timer(msg)
 
-    if msg.data[1] == 'Update' then
-        Update()
-    end
+    local callbacks = {
+        ['Update'] = Update
+    }
+
+    callbacks[msg.data[1]]()
+
+    return true
 
 end
 
