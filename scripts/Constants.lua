@@ -23,3 +23,7 @@ square = math.sqrt
 
 StandOnly = 0
 WalkOnly = 1
+
+AlertCapZero = -3371
+NonHostile = -3531
+NonHostileUntilThreat = -6832
