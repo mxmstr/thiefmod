@@ -1,14 +1,18 @@
 require 'Constants'
 require 'SuspiciousActions'
 
+local starting_point = nil
+local crime = DefaultCrime
+
 
 function BeginScript(msg)
 
     script.room_rule = StandOnly
-
     script:SetTimedMessage('name', 16, 'Periodic', 'Update')
     --script:SetTimedMessage('name', 500, 'Periodic', 'Fire')
     
+    starting_point = object.Named('StartingPoint')
+
 
     property.Add(msg.to, 'SelfLit')
     property.Set(msg.to, 'SelfLit', 0)
@@ -50,6 +54,9 @@ end
 
 
 function Update()
+
+    object.Teleport(starting_point, script.ObjId)
+
 
     local min_priority = 0
     local min_value = 0

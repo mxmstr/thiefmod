@@ -24,6 +24,13 @@ square = math.sqrt
 StandOnly = 0
 WalkOnly = 1
 
+DefaultCrime = 0
+Trespassing = 1
+HasWeapon = 2
+JustAttacked = 3
+
 AlertCapZero = -3371
 NonHostile = -3531
 NonHostileUntilThreat = -6832
+
+DanceConv = -6831
