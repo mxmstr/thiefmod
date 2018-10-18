@@ -1,15 +1,16 @@
 require 'Constants'
 
 local garrett = nil
+local response = nil
+local alert_level = 0
 
 
 function BeginScript(msg)
 
     garrett = object.Named('NewGarrett')
 
+    object.AddMetaProperty(msg.to, RespondToDefault)
     object.AddMetaProperty(msg.to, NonHostileUntilThreat)
-    --object.AddMetaProperty(msg.to, NonHostile)
-    --object.AddMetaProperty(msg.to, InvestigateOnAlert)
 
     script:SetTimedMessage('name', 16, 'Periodic', 'Update')
 
@@ -47,6 +48,12 @@ end
 
 function Update()
 
+    local new_level = ai.GetAlertLevel(script.ObjId)
 
+    if new_level == 2 and new_level ~= alert_level then
+        
+    end
+
+    alert_level = new_level
 
 end
