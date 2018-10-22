@@ -31,7 +31,7 @@ JustAttacked = 3
 
 AlertCapZero = -3371
 NonHostile = -3531
-NonHostileUntilThreat = -6832
-RespondToDefault = -6833
+NonHostileUntilThreat = -6830
+RespondToDefault = -6831
 
 DanceConv = -6831
