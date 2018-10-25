@@ -33,5 +33,6 @@ AlertCapZero = -3371
 NonHostile = -3531
 NonHostileUntilThreat = -6830
 RespondToDefault = -6831
+PosedCorpse = -1832
 
 DanceConv = -6831
