@@ -26,7 +26,7 @@ end
 function PlayerRoomEnter(msg)
 
     --print('Player Enter')
-    script:PostMessage(msg.MoveObjId, 'SetRoomRule', msg.ToObjId, msg.FromObjId)
+    script:PostMessage(msg.MoveObjId, 'SetRoom', msg.ToObjId, msg.FromObjId)
 
     return true
 

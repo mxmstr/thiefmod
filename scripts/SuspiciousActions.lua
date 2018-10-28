@@ -6,17 +6,29 @@ local light_max = 12
 
 InStandZone = function(script)
 
-    return script.room_rule == StandOnly
+    return script.current_room == nil or object.HasMetaProperty(script.current_room, StandZone)
 
 end
 
 InWalkZone = function(script)
 
-    return script.room_rule == WalkOnly
+    return script.current_room == nil or object.HasMetaProperty(script.current_room, WalkZone)
+
+end
+
+Trespassing = function(script)
+
+    return script.current_room == nil or object.HasMetaProperty(script.current_room, RestrictedArea)
 
 end
 
 -- Sources
+
+AlwaysTrue = function(script)
+
+    return 1
+
+end
 
 local last_pos = nil
 
@@ -54,11 +66,19 @@ actions = {
         light_multiplier = 30
     },
     { 
-        priority = 0,
+        priority = 1,
         trigger = InWalkZone,
         value_source = GetSpeed, 
         value_target = 0.085,
         value_max = 0.2,
-        light_multiplier = 30
+        light_multiplier = 60
+    },
+    { 
+        priority = 2,
+        trigger = Trespassing,
+        value_source = AlwaysTrue, 
+        value_target = 0,
+        value_max = 1,
+        light_multiplier = 100
     }
 }

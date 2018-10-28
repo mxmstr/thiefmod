@@ -21,8 +21,9 @@ hook = lgs.DarkHookSrv
 abs = math.abs
 square = math.sqrt
 
-StandOnly = 0
-WalkOnly = 1
+WalkZone = -6833
+StandZone = -6834
+RestrictedArea = -6835
 
 DefaultCrime = 0
 Trespassing = 1

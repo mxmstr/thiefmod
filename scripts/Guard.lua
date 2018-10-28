@@ -9,8 +9,8 @@ function BeginScript(msg)
 
     garrett = object.Named('NewGarrett')
 
-    --object.AddMetaProperty(msg.to, RespondToDefault)
-    --object.AddMetaProperty(msg.to, NonHostileUntilThreat)
+    object.AddMetaProperty(msg.to, RespondToDefault)
+    object.AddMetaProperty(msg.to, NonHostileUntilThreat)
 
     script:SetTimedMessage('name', 16, 'Periodic', 'Update')
 

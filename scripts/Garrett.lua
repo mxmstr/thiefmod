@@ -7,7 +7,7 @@ local crime = DefaultCrime
 
 function BeginScript(msg)
 
-    script.room_rule = StandOnly
+    script.current_room = nil
     script:SetTimedMessage('name', 16, 'Periodic', 'Update')
     --script:SetTimedMessage('name', 500, 'Periodic', 'Fire')
     
@@ -22,10 +22,12 @@ function BeginScript(msg)
 end
 
 
-function SetRoomRule(msg)
+function SetRoom(msg)
 
-    local rule = property.Get(msg.data[1], 'DesignNote')
-    script.room_rule = _G[rule]
+    --local rule = object.GetName(msg.data[1])--property.Get(msg.data[1], 'DesignNote')
+    --script.room_rule = _G[rule]
+
+    script.current_room = msg.data[1]
 
     return true
 
