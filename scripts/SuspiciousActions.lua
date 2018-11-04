@@ -63,7 +63,7 @@ actions = {
         value_source = GetSpeed, 
         value_target = 0,
         value_max = 0.2,
-        light_multiplier = 30
+        light_multiplier = 40
     },
     { 
         priority = 1,
@@ -71,7 +71,7 @@ actions = {
         value_source = GetSpeed, 
         value_target = 0.085,
         value_max = 0.2,
-        light_multiplier = 60
+        light_multiplier = 80
     },
     { 
         priority = 2,
