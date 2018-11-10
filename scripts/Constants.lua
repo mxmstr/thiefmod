@@ -4,10 +4,10 @@
     - Staring is suspicious
     - Crouching is suspicious
     - Blend in with crowd
-    - Carry weapon is suspicious
+    X Carry weapon is suspicious
     AI
-    - Delayed alert level 3
-    - Order out of restricted area
+    X Delayed alert level 3
+    X Order out of restricted area
     - Custom sound schemas
 ]]
 
@@ -20,6 +20,12 @@ link = lgs.LinkSrv
 hook = lgs.DarkHookSrv
 abs = math.abs
 square = math.sqrt
+
+GarrettHeight = 6
+
+StartingPoint = 720
+RestrictedWatchObj = 2053
+CrimeWatchObj = 2054
 
 WalkZone = -6833
 StandZone = -6834
@@ -34,6 +40,7 @@ AlertCapZero = -3371
 NonHostile = -3531
 NonHostileUntilThreat = -6830
 RespondToDefault = -6831
+FrontGateGuard = -1689
 PosedCorpse = -1832
 
 DanceConv = -6831

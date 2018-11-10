@@ -23,8 +23,16 @@ function Timer(msg)
 end
 
 
+function AIModeChange(msg)
+
+    ui.TextMessage(msg.mode)
+
+    return true
+
+end
+
+
 function Update()
 
-    ui.TextMessage()
 
 end

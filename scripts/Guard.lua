@@ -2,7 +2,7 @@ require 'Constants'
 
 local garrett = nil
 local response = nil
-local alert_level = 0
+
 
 
 function BeginScript(msg)
@@ -10,8 +10,8 @@ function BeginScript(msg)
     garrett = object.Named('NewGarrett')
 
     object.AddMetaProperty(msg.to, RespondToDefault)
-    object.AddMetaProperty(msg.to, NonHostileUntilThreat)
-
+    --object.AddMetaProperty(msg.to, AlertCapZero)
+    
     script:SetTimedMessage('name', 16, 'Periodic', 'Update')
 
     return true
@@ -32,28 +32,41 @@ function Timer(msg)
 end
 
 
-function CalmDown(msg)
+function AIModeChange(msg)
 
-    ai.ClearAlertness(script.ObjId)
+    if msg.mode == 5 then
+        property.Add(script.ObjId, 'SelfLit')
+        property.Set(script.ObjId, 'SelfLit', 250)
+    end
+
+    return true
 
 end
 
 
-function RestartConv()
+function AIModeChange(msg)
 
-    --link.
+    if msg.mode == 5 then
+        property.Add(script.ObjId, 'SelfLit')
+        property.Set(script.ObjId, 'SelfLit', 250)
+    end
+
+    return true
+
+end
+
+
+function BecomeHostile(msg)
+
+    ai.SetMinimumAlert(script.ObjId, 3)
+
+    return true
 
 end
 
 
 function Update()
 
-    local new_level = ai.GetAlertLevel(script.ObjId)
-
-    if new_level == 2 and new_level ~= alert_level then
-        
-    end
-
-    alert_level = new_level
+    
 
 end

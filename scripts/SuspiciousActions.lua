@@ -22,6 +22,25 @@ Trespassing = function(script)
 
 end
 
+local equip_timer = nil
+
+SuspiciousEquipped = function(script)
+
+    if script.suspicious_equipped == 1 then
+
+        if equip_timer ~= nil then
+            script:KillTimedMessage(equip_timer)
+        end
+
+        script.suspicious_cooldown = 1
+        equip_timer = script:SetTimedMessage('DisableCooldown', 2000, 'OneShot', 'SetSuspiciousCooldown', false)
+        
+    end
+
+    return script.suspicious_cooldown == 1
+
+end
+
 -- Sources
 
 AlwaysTrue = function(script)
@@ -63,7 +82,8 @@ actions = {
         value_source = GetSpeed, 
         value_target = 0,
         value_max = 0.2,
-        light_multiplier = 40
+        light_multiplier = 40,
+        watch_obj = nil
     },
     { 
         priority = 1,
@@ -71,7 +91,8 @@ actions = {
         value_source = GetSpeed, 
         value_target = 0.085,
         value_max = 0.2,
-        light_multiplier = 80
+        light_multiplier = 80,
+        watch_obj = nil
     },
     { 
         priority = 2,
@@ -79,6 +100,16 @@ actions = {
         value_source = AlwaysTrue, 
         value_target = 0,
         value_max = 1,
-        light_multiplier = 100
+        light_multiplier = 100,
+        watch_obj = RestrictedWatchObj
+    },
+    {
+        priority = 3,
+        trigger = SuspiciousEquipped,
+        value_source = AlwaysTrue, 
+        value_target = 0,
+        value_max = 1,
+        light_multiplier = 100,
+        watch_obj = CrimeWatchObj
     }
 }
