@@ -22,6 +22,7 @@ abs = math.abs
 square = math.sqrt
 
 GarrettHeight = 6
+DefaultObjPos = vector(0, 0, -100)
 
 StartingPoint = 720
 RestrictedWatchObj = 2053
@@ -37,9 +38,10 @@ HasWeapon = 2
 JustAttacked = 3
 
 AlertCapZero = -3371
+AlertCapTwo = -6836
 NonHostile = -3531
 NonHostileUntilThreat = -6830
-RespondToDefault = -6831
+RelaxedAwareness = -6831
 FrontGateGuard = -1689
 PosedCorpse = -1832
 

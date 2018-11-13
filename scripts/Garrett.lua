@@ -120,7 +120,7 @@ function Update()
 
     if watch_obj ~= new_watch_obj then
         if watch_obj ~= nil then
-            object.Teleport(watch_obj, vector(0, 0, 0))
+            object.Teleport(watch_obj, DefaultObjPos)
         end
         watch_obj = new_watch_obj
     end

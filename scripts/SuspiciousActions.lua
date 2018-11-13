@@ -33,8 +33,8 @@ SuspiciousEquipped = function(script)
         end
 
         script.suspicious_cooldown = 1
-        equip_timer = script:SetTimedMessage('DisableCooldown', 2000, 'OneShot', 'SetSuspiciousCooldown', false)
-        
+        equip_timer = script:SetTimedMessage('DisableCooldown', 1000, 'OneShot', 'SetSuspiciousCooldown', false)
+
     end
 
     return script.suspicious_cooldown == 1

@@ -23,9 +23,9 @@ function Timer(msg)
 end
 
 
-function AIModeChange(msg)
+function SignalAI(msg)
 
-    ui.TextMessage(msg.mode)
+    print(msg.signal)
 
     return true
 
